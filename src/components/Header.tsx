@@ -21,10 +21,10 @@ export default function Header() {
           <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-[#A8BFA8] to-[rgba(201,168,106,0.55)] shadow-[0_8px_20px_rgba(168,191,168,0.35)]" />
           <div>
             <div className="font-[Cormorant_Garamond] text-xl font-semibold tracking-wide">
-              Boutique Floral
+              Boutique Commerce
             </div>
             <div className="text-xs font-medium text-[#6B6B6B]">
-              Natural • Elegante • Personalizable
+              Versátil • Personalizable • En línea
             </div>
           </div>
         </a>
@@ -32,8 +32,8 @@ export default function Header() {
         <nav className="hidden text-sm text-[#6B6B6B] lg:block">
           <ul className="flex items-center gap-2">
             {[
-              ["Arreglos", "#catalogo"],
-              ["Ocasiones", "#ocasiones"],
+              ["Catálogo", "#catalogo"],
+              ["Colecciones", "#colecciones"],
               ["Cómo funciona", "#como-funciona"],
               ["Reseñas", "#testimonios"],
               ["Contacto", "#contacto"],

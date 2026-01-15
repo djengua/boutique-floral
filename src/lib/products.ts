@@ -5,46 +5,46 @@ import type { Product } from "@/store/shopStore";
 
 export const products: Product[] = [
   {
-    id: "bosque-suave",
-    name: "Bosque Suave",
-    basePrice: 790,
+    id: "set-essentials",
+    name: "Set Essentials",
+    basePrice: 690,
     description:
-      'Verdes naturales, blancos cremosos y textura botánica. Perfecto para "cualquier día".',
+      "Combo versátil con básicos listos para envío rápido y variedad de usos.",
     image:
-      "https://images.unsplash.com/photo-1468327768560-75b778cbb551?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?auto=format&fit=crop&w=1200&q=80",
     badge: "Más vendido",
     variants: ["S", "M", "L", "Premium"],
   },
   {
-    id: "jardin-minimal",
-    name: "Jardín Minimal",
-    basePrice: 1290,
-    description: "Composición limpia y elegante con follaje de temporada.",
+    id: "linea-minimal",
+    name: "Línea Minimal",
+    basePrice: 1190,
+    description: "Diseño limpio con acabados neutros para marcas sobrias.",
     image:
-      "https://images.unsplash.com/photo-1519378058457-4c29a0a2efac?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1200&q=80",
     badge: "Premium",
     variants: ["M", "L", "Premium"],
   },
   {
-    id: "aura-blanca",
-    name: "Aura Blanca",
-    basePrice: 890,
+    id: "kit-lifestyle",
+    name: "Kit Lifestyle",
+    basePrice: 840,
     description:
-      "Blancos suaves + verdes salvia. Ideal para agradecimiento, hogar u oficina.",
+      "Opciones para regalos corporativos o compras personales en tendencia.",
     image:
-      "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=1200&q=80",
     badge: "Nuevo",
     variants: ["S", "M", "L"],
   },
   {
-    id: "verde-sereno",
-    name: "Verde Sereno",
-    basePrice: 990,
+    id: "coleccion-urbana",
+    name: "Colección Urbana",
+    basePrice: 980,
     description:
-      "Tonos neutros, textura natural y diseño calmado. Para momentos que requieren sutileza.",
+      "Colores atemporales y materiales resistentes para uso diario.",
     image:
-      "https://images.unsplash.com/photo-1525258946800-98cfd641d0de?auto=format&fit=crop&w=1200&q=80",
-    badge: "Sereno",
+      "https://images.unsplash.com/photo-1523205771623-e0faa4d2813d?auto=format&fit=crop&w=1200&q=80",
+    badge: "Favorito",
     variants: ["M", "L", "Premium"],
   },
 ];

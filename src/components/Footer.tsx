@@ -13,16 +13,16 @@ export default function Footer() {
             <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-[#A8BFA8] to-[rgba(201,168,106,0.55)]" />
             <div>
               <div className="font-[Cormorant_Garamond] text-xl font-semibold tracking-wide">
-                Boutique Floral
+                Boutique Commerce
               </div>
               <div className="text-xs font-medium text-[#6B6B6B]">
-                Natural • Elegante • Por pedido
+                Flexible • Confiable • Multi-categoría
               </div>
             </div>
           </div>
           <p className="mt-3 text-sm leading-7 text-[#6B6B6B]">
-            Arreglos florales con estética botánica. Diseños consistentes,
-            empaque boutique y entrega programada.
+            Tienda en línea con catálogo adaptable, experiencias de compra
+            rápidas y comunicación clara con tus clientes.
           </p>
         </div>
 
@@ -30,10 +30,10 @@ export default function Footer() {
           <h4 className="text-sm font-semibold tracking-wide">Catálogo</h4>
           <div className="mt-2 space-y-2 text-sm text-[#6B6B6B]">
             <a className="block hover:text-[#2B2B2B]" href="#catalogo">
-              Arreglos
+              Productos
             </a>
-            <a className="block hover:text-[#2B2B2B]" href="#ocasiones">
-              Ocasiones
+            <a className="block hover:text-[#2B2B2B]" href="#colecciones">
+              Colecciones
             </a>
             <a className="block hover:text-[#2B2B2B]" href="#como-funciona">
               Cómo funciona
@@ -74,8 +74,10 @@ export default function Footer() {
 
       <div className="border-t border-[#EFE6DD] py-4">
         <Container className="flex flex-wrap items-center justify-between gap-3 text-xs text-[#6B6B6B]">
-          <span>© {year} Boutique Floral. Todos los derechos reservados.</span>
-          <span>Hecho con cariño — estilo natural</span>
+          <span>
+            © {year} Boutique Commerce. Todos los derechos reservados.
+          </span>
+          <span>Hecho con detalle — comercio moderno</span>
         </Container>
       </div>
     </footer>

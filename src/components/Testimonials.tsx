@@ -6,18 +6,18 @@ import Container from "@/components/ui/Container";
 const items = [
   {
     who: "Mariana",
-    meta: "Pedido programado",
-    text: "Se veía tal cual el estilo del catálogo: natural, limpio, elegante. El empaque fue hermoso.",
+    meta: "Compra en línea",
+    text: "La navegación es clara y los productos tienen fotos reales. Fue fácil elegir talla y color.",
   },
   {
     who: "Diego",
-    meta: "Arreglo premium",
-    text: "Me ayudaron a ajustar colores por temporada y quedó perfecto para la oficina. Súper recomendado.",
+    meta: "Pedido corporativo",
+    text: "Pudimos ajustar cantidades y agregar branding. La cotización llegó rápido y todo salió a tiempo.",
   },
   {
     who: "Lucía",
     meta: "Regalo",
-    text: "Excelente atención por WhatsApp y me mandaron foto antes de entregar. Todo súper cuidado.",
+    text: "El empaque y los mensajes personalizados quedaron perfectos. Repetiré la compra.",
   },
 ];
 
@@ -30,7 +30,7 @@ export default function Testimonials() {
             Reseñas
           </h3>
           <p className="mt-1 text-sm leading-6 text-[#6B6B6B]">
-            Detalles reales, estilo consistente y entrega cuidada.
+            Experiencias reales para diferentes tipos de tienda.
           </p>
         </div>
 

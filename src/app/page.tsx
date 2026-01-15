@@ -16,10 +16,10 @@ export default function Page() {
         <div className="mx-auto flex w-[min(1200px,calc(100%-32px))] items-center justify-between gap-3 py-2 text-sm text-[#6B6B6B]">
           <div className="inline-flex items-center gap-2 rounded-full border border-[#EFE6DD] bg-white/70 px-3 py-1">
             <span className="h-2 w-2 rounded-full bg-[#A8BFA8]" />
-            Por pedido • Entrega programada
+            Compra en línea • Envíos nacionales
           </div>
           <div className="inline-flex items-center gap-2 rounded-full border border-[#EFE6DD] bg-white/70 px-3 py-1">
-            Atención: WhatsApp • 10:00–19:00
+            Atención: Soporte en vivo • 10:00–19:00
           </div>
         </div>
       </div>
