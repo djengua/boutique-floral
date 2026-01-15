@@ -1,7 +1,7 @@
 /* =========================
    lib/occasions.ts
 ========================= */
-export const occasions = [
+export const collections = [
   {
     title: "Novedades",
     tag: "Top",

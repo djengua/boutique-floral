@@ -3,7 +3,7 @@
 ========================= */
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import Occasions from "@/components/Occasions";
+import Collections from "@/components/Collections";
 import ProductGrid from "@/components/ProductGrid";
 import HowItWorksBand from "@/components/HowItWorksBand";
 import Testimonials from "@/components/Testimonials";
@@ -28,7 +28,7 @@ export default function Page() {
 
       <main className="mx-auto w-[min(1200px,calc(100%-32px))]">
         <Hero />
-        <Occasions />
+        <Collections />
         <ProductGrid />
         <HowItWorksBand />
         <Testimonials />

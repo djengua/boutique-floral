@@ -1,11 +1,11 @@
 /* =========================
-   components/Occasions.tsx
+   components/Collections.tsx
 ========================= */
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
-import { occasions } from "@/lib/occasions";
+import { collections } from "@/lib/collections";
 
-export default function Occasions() {
+export default function Collections() {
   return (
     <section id="colecciones" className="py-6">
       <Container>
@@ -25,7 +25,7 @@ export default function Occasions() {
         </div>
 
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
-          {occasions.map((o) => (
+          {collections.map((o) => (
             <a
               key={o.title}
               href="#catalogo"
