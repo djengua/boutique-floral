@@ -21,7 +21,7 @@ A continuación se describe la organización principal del repositorio.
 - Componentes de UI y secciones de la landing:
   - `Header.tsx`: Navegación, marca y acceso al carrito.
   - `Hero.tsx`: Mensaje principal y llamada a la acción.
-  - `Occasions.tsx`: Sección de colecciones/categorías destacadas.
+  - `Collections.tsx`: Sección de colecciones/categorías destacadas.
   - `ProductGrid.tsx`: Catálogo con tarjetas de producto y variantes.
   - `HowItWorksBand.tsx`: Explicación del flujo de compra.
   - `Testimonials.tsx`: Reseñas de clientes.
@@ -32,7 +32,7 @@ A continuación se describe la organización principal del repositorio.
 
 - Datos estáticos y utilidades:
   - `products.ts`: Listado de productos y lógica de precio por variante.
-  - `occasions.ts`: Colecciones o categorías destacadas.
+  - `collections.ts`: Colecciones o categorías destacadas.
 
 ## `src/store`
 
