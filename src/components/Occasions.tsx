@@ -7,16 +7,16 @@ import { occasions } from "@/lib/occasions";
 
 export default function Occasions() {
   return (
-    <section id="ocasiones" className="py-6">
+    <section id="colecciones" className="py-6">
       <Container>
         <div className="mb-4 flex items-end justify-between gap-4">
           <div>
             <h3 className="font-[Cormorant_Garamond] text-3xl font-semibold tracking-wide">
-              Ocasiones
+              Colecciones
             </h3>
             <p className="mt-1 max-w-[65ch] text-sm leading-6 text-[#6B6B6B]">
-              Elige una intención y te mostramos diseños en el mismo estilo:
-              natural, limpio y elegante.
+              Explora líneas listas para vender: esenciales, temporada y
+              favoritos del equipo.
             </p>
           </div>
           <a href="#catalogo">

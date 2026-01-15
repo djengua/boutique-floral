@@ -4,9 +4,9 @@ import "./globals.css";
    app/layout.tsx
 ========================= */
 export const metadata = {
-  title: "Boutique Floral — Por pedido",
+  title: "Boutique Commerce — Tienda en línea",
   description:
-    "Boutique floral natural por pedido. Arreglos elegantes, personalizados y con entrega programada.",
+    "Tienda en línea adaptable para distintos rubros: papelería, moda o artículos de regalo con compra sencilla.",
 };
 
 export default function RootLayout({

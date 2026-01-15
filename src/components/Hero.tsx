@@ -34,31 +34,32 @@ export default function Hero() {
                   strokeLinecap="round"
                 />
               </svg>
-              Arreglos naturales por pedido
+              Colecciones curadas para tu tienda
             </div>
 
             <h2 className="relative mt-4 font-[Cormorant_Garamond] text-[46px] font-semibold leading-[1.03] tracking-wide sm:text-[54px]">
-              Arreglos que se sienten.
+              Productos que cuentan historias.
             </h2>
             <p className="relative mt-2 max-w-[52ch] text-[15px] leading-7 text-[#6B6B6B]">
-              Diseños botánicos elegantes, armados a mano con flores frescas. Tú
-              eliges la ocasión, el tamaño y el mensaje. Nosotros lo dejamos
-              perfecto para la fecha que necesitas.
+              Une categorías, colores y tallas en un solo escaparate. Tú eliges
+              el estilo y el mensaje de tu marca; nosotros mantenemos la
+              experiencia de compra clara, rápida y adaptable para papelería,
+              moda o regalos.
             </p>
 
             <div className="relative mt-5 flex flex-wrap gap-2">
               <a href="#catalogo">
-                <Button variant="primary">Comprar por pedido</Button>
+                <Button variant="primary">Comprar ahora</Button>
               </a>
               <a href="#como-funciona">
-                <Button>Cómo funciona</Button>
+                <Button>Ver proceso</Button>
               </a>
             </div>
 
             <div className="relative mt-4 flex flex-wrap gap-2">
-              <Chip>Entrega programada</Chip>
-              <Chip>Mensaje personalizado</Chip>
-              <Chip>Empaque boutique</Chip>
+              <Chip>Envíos configurables</Chip>
+              <Chip>Catálogo flexible</Chip>
+              <Chip>Marca personalizable</Chip>
             </div>
           </div>
 
@@ -72,7 +73,7 @@ export default function Hero() {
         rgba(43,43,43,0.05),
         rgba(43,43,43,0.25)
       ),
-      url("https://images.unsplash.com/photo-1526045478516-99145907023c?auto=format&fit=crop&w=1400&q=80")
+      url("https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1400&q=80")
     `,
               }}
             />
@@ -80,10 +81,10 @@ export default function Hero() {
             <div className="absolute bottom-4 left-4 flex max-w-[360px] gap-3 rounded-2xl border border-[#EFE6DD] bg-white/85 p-3 backdrop-blur">
               <div className="h-10 w-10 rounded-2xl bg-gradient-to-br from-[rgba(168,191,168,0.9)] to-[rgba(201,168,106,0.5)]" />
               <div>
-                <div className="text-sm font-bold">Calidad boutique</div>
+                <div className="text-sm font-bold">Calidad consistente</div>
                 <div className="text-xs leading-5 text-[#6B6B6B]">
-                  Fotos reales, materiales premium y selección de temporada para
-                  un look natural.
+                  Fotos reales, fichas claras y colecciones pensadas para vender
+                  mejor sin importar el rubro.
                 </div>
               </div>
             </div>

@@ -3,33 +3,33 @@
 ========================= */
 export const occasions = [
   {
-    title: "Cumpleaños",
+    title: "Novedades",
     tag: "Top",
-    img: "https://images.unsplash.com/photo-1526045478516-99145907023c?auto=format&fit=crop&w=900&q=70",
+    img: "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=70",
   },
   {
-    title: "Aniversario",
-    tag: "Romance",
-    img: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=900&q=70",
+    title: "Regalos",
+    tag: "Popular",
+    img: "https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&w=900&q=70",
   },
   {
-    title: "Graduación",
+    title: "Oficina",
     tag: "Nuevo",
-    img: "https://images.unsplash.com/photo-1468327768560-75b778cbb551?auto=format&fit=crop&w=900&q=70",
+    img: "https://images.unsplash.com/photo-1507209696998-3c532be9b2b5?auto=format&fit=crop&w=900&q=70",
   },
   {
-    title: "Agradecimiento",
+    title: "Básicos",
     tag: "Clásico",
-    img: "https://images.unsplash.com/photo-1525258946800-98cfd641d0de?auto=format&fit=crop&w=900&q=70",
+    img: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=70",
   },
   {
-    title: "Condolencias",
+    title: "Temporada",
     tag: "Sereno",
-    img: "https://images.unsplash.com/photo-1471879832106-c7ab9e0cee23?auto=format&fit=crop&w=900&q=70",
+    img: "https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=900&q=70",
   },
   {
-    title: "Detalles",
+    title: "Personalizables",
     tag: "Sutil",
-    img: "https://images.unsplash.com/photo-1487070183336-b863922373d4?auto=format&fit=crop&w=900&q=70",
+    img: "https://images.unsplash.com/photo-1519337265831-281ec6cc8514?auto=format&fit=crop&w=900&q=70",
   },
 ];

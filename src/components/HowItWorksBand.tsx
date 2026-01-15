@@ -15,29 +15,30 @@ export default function HowItWorksBand() {
         >
           <div className="p-6">
             <h3 className="font-[Cormorant_Garamond] text-3xl font-semibold tracking-wide">
-              Cómo funciona el pedido
+              Cómo funciona la compra
             </h3>
             <p className="mt-2 max-w-[60ch] text-sm leading-7 text-[#6B6B6B]">
-              1) Elige un arreglo y tamaño • 2) Añade mensaje y extras • 3)
-              Selecciona fecha/hora de entrega. Armamos tu pedido con flores de
-              temporada manteniendo el estilo natural del catálogo.
+              1) Elige categoría y formato • 2) Ajusta colores, talla o
+              personalización • 3) Confirma envío y método de pago. Todo el flujo
+              está pensado para adaptarse a papelería, moda o artículos de
+              regalo.
             </p>
             <div className="mt-4 flex flex-wrap gap-2">
-              <Chip>Confirmación por WhatsApp</Chip>
-              <Chip>Fotos reales antes de enviar</Chip>
-              <Chip>Empaque boutique incluido</Chip>
+              <Chip>Confirmación automática</Chip>
+              <Chip>Inventario visible</Chip>
+              <Chip>Opciones de empaque</Chip>
             </div>
             <div className="mt-4 flex flex-wrap gap-2">
               <a href="#contacto">
-                <Button variant="primary">Hacer pedido</Button>
+                <Button variant="primary">Iniciar compra</Button>
               </a>
               <a href="#catalogo">
-                <Button>Ver catálogo</Button>
+                <Button>Explorar catálogo</Button>
               </a>
             </div>
           </div>
           <div
-            className="min-h-[220px] bg-[linear-gradient(180deg,rgba(43,43,43,0.05),rgba(43,43,43,0.15)),url('https://images.unsplash.com/photo-1519378058457-4c29a0a2efac?auto=format&fit=crop&w=1400&q=80')] bg-cover bg-center"
+            className="min-h-[220px] bg-[linear-gradient(180deg,rgba(43,43,43,0.05),rgba(43,43,43,0.15)),url('https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=1400&q=80')] bg-cover bg-center"
             aria-label="Imagen decorativa"
           />
         </div>

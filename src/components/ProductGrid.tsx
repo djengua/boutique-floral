@@ -62,15 +62,15 @@ export default function ProductGrid() {
         <div className="mb-4 flex items-end justify-between gap-4">
           <div>
             <h3 className="font-[Cormorant_Garamond] text-3xl font-semibold tracking-wide">
-              Catálogo por pedido
+              Catálogo destacado
             </h3>
             <p className="mt-1 max-w-[65ch] text-sm leading-6 text-[#6B6B6B]">
-              Selecciona tamaño y estilo. Al finalizar, eliges fecha/hora de
-              entrega y escribes el mensaje.
+              Selecciona talla o formato. Al finalizar, eliges envío, pago y
+              cualquier personalización.
             </p>
           </div>
           <a href="#contacto">
-            <Button>Cotizar corporativo</Button>
+            <Button>Solicitar cotización</Button>
           </a>
         </div>
 
@@ -111,7 +111,7 @@ export default function ProductGrid() {
 
                   <div
                     className="mt-1 flex flex-wrap gap-2"
-                    aria-label="Tamaños"
+                    aria-label="Variantes"
                   >
                     {p.variants.map((vv) => (
                       <Segment key={vv} productId={p.id} value={vv} />
@@ -124,7 +124,7 @@ export default function ProductGrid() {
                         className="w-full"
                         aria-label={`Personalizar ${p.name}`}
                       >
-                        Personalizar
+                        Ver detalles
                       </Button>
                     </a>
                     <Button
