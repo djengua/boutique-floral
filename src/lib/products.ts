@@ -44,7 +44,7 @@ export const products: Product[] = [
       "Colores atemporales y materiales resistentes para uso diario.",
     image:
       "https://images.unsplash.com/photo-1523205771623-e0faa4d2813d?auto=format&fit=crop&w=1200&q=80",
-    badge: "Favorito",
+    badge: "Sereno",
     variants: ["M", "L", "Premium"],
   },
 ];
