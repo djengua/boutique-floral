@@ -1,11 +1,66 @@
 /* =========================
    components/Collections.tsx
 ========================= */
+"use client";
+
+import { useEffect, useMemo, useState } from "react";
+
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
-import { collections } from "@/lib/collections";
+import { listCollections } from "@/lib/api";
+import {
+  collectionFallbackCards,
+  collectionShowcase,
+  mapApiCollectionToCard,
+  type CollectionCard,
+} from "@/lib/collections";
+
+type ApiStatus = "idle" | "loading" | "ready" | "fallback";
 
 export default function Collections() {
+  const [items, setItems] = useState<CollectionCard[]>(collectionFallbackCards);
+  const [status, setStatus] = useState<ApiStatus>("idle");
+
+  useEffect(() => {
+    let active = true;
+
+    const loadCollections = async () => {
+      setStatus("loading");
+      try {
+        const response = await listCollections(
+          { page: 1, page_size: 6, status: "active" },
+          { cache: "no-store" }
+        );
+        if (!active) return;
+        const mapped = response.data.map((collection, index) =>
+          mapApiCollectionToCard(collection, index)
+        );
+        setItems(mapped.length > 0 ? mapped : collectionFallbackCards);
+        setStatus("ready");
+      } catch (error) {
+        if (!active) return;
+        setItems(collectionFallbackCards);
+        setStatus("fallback");
+      }
+    };
+
+    loadCollections();
+
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const subtitle = useMemo(() => {
+    if (status === "loading") {
+      return "Cargando colecciones desde el API...";
+    }
+    if (status === "fallback") {
+      return "Mostrando colecciones de ejemplo mientras el API responde.";
+    }
+    return "Explora líneas listas para vender: esenciales, temporada y favoritos del equipo.";
+  }, [status]);
+
   return (
     <section id="colecciones" className="py-6">
       <Container>
@@ -15,8 +70,7 @@ export default function Collections() {
               Colecciones
             </h3>
             <p className="mt-1 max-w-[65ch] text-sm leading-6 text-[#6B6B6B]">
-              Explora líneas listas para vender: esenciales, temporada y
-              favoritos del equipo.
+              {subtitle}
             </p>
           </div>
           <a href="#catalogo">
@@ -25,9 +79,9 @@ export default function Collections() {
         </div>
 
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
-          {collections.map((o) => (
+          {items.map((o) => (
             <a
-              key={o.title}
+              key={o.id}
               href="#catalogo"
               className="group relative min-h-[120px] overflow-hidden rounded-[14px] border border-[#EFE6DD] bg-white/70 transition hover:-translate-y-0.5 hover:shadow-[0_14px_24px_rgba(43,43,43,0.10)]"
             >

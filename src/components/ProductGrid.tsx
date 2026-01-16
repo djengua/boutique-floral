@@ -3,10 +3,19 @@
 ========================= */
 "use client";
 
+import { useEffect, useMemo, useState } from "react";
+
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
-import { products, priceFor } from "@/lib/products";
-import { useShopStore, type VariantKey } from "@/store/shopStore";
+import { listProducts } from "@/lib/api";
+import {
+  mapApiProductToCard,
+  priceFor,
+  productShowcase,
+} from "@/lib/products";
+import { useShopStore, type VariantKey, type Product } from "@/store/shopStore";
+
+type ApiStatus = "idle" | "loading" | "ready" | "fallback";
 
 function Badge({ label }: { label: string }) {
   const premium = label === "Premium";
@@ -56,6 +65,49 @@ export default function ProductGrid() {
     (s) => s.selectedVariantByProduct
   );
 
+  const [items, setItems] = useState<Product[]>(productShowcase);
+  const [status, setStatus] = useState<ApiStatus>("idle");
+
+  useEffect(() => {
+    let active = true;
+
+    const loadProducts = async () => {
+      setStatus("loading");
+      try {
+        const response = await listProducts(
+          { page: 1, page_size: 8, status: "active" },
+          { cache: "no-store" }
+        );
+        if (!active) return;
+        const mapped = response.data.map((product, index) =>
+          mapApiProductToCard(product, index)
+        );
+        setItems(mapped.length > 0 ? mapped : productShowcase);
+        setStatus("ready");
+      } catch (error) {
+        if (!active) return;
+        setItems(productShowcase);
+        setStatus("fallback");
+      }
+    };
+
+    loadProducts();
+
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const subtitle = useMemo(() => {
+    if (status === "loading") {
+      return "Cargando catálogo desde el API...";
+    }
+    if (status === "fallback") {
+      return "Mostrando catálogo de ejemplo mientras el API responde.";
+    }
+    return "Selecciona talla o formato. Al finalizar, eliges envío, pago y cualquier personalización.";
+  }, [status]);
+
   return (
     <section id="catalogo" className="py-6">
       <Container>
@@ -65,8 +117,7 @@ export default function ProductGrid() {
               Catálogo destacado
             </h3>
             <p className="mt-1 max-w-[65ch] text-sm leading-6 text-[#6B6B6B]">
-              Selecciona talla o formato. Al finalizar, eliges envío, pago y
-              cualquier personalización.
+              {subtitle}
             </p>
           </div>
           <a href="#contacto">
@@ -75,7 +126,7 @@ export default function ProductGrid() {
         </div>
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {products.map((p) => {
+          {items.map((p) => {
             const v = (selectedVariantByProduct[p.id] ??
               (p.variants[0] as VariantKey)) as VariantKey;
             const price = priceFor(v, p.basePrice);
