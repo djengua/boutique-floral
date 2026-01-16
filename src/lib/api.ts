@@ -30,6 +30,7 @@ export type ApiCategory = {
   id: string;
   name: string;
   slug: string;
+  description: string;
   status: string;
 };
 
@@ -37,6 +38,7 @@ export type ApiCollection = {
   id: string;
   name: string;
   slug: string;
+
   status: string;
 };
 
@@ -130,20 +132,33 @@ export const deleteProduct = (id: string, options?: RequestOptions) =>
     ...options,
   });
 
-export const listCategories = (
+export const listCategories = async (
   params?: QueryParams,
   options?: RequestOptions
-) =>
-  fetchJson<PaginatedResponse<ApiCategory>>(
-    `${API_BASE_URL}/categories${buildQuery(params)}`,
-    options
-  );
+) => {
+  const result = await fetchJson<
+    ApiCategory[] | PaginatedResponse<ApiCategory>
+  >(`${API_BASE_URL}/categories${buildQuery(params)}`, options);
+
+  // Si el API regresa arreglo plano: [...]
+  if (Array.isArray(result)) {
+    return {
+      data: result,
+      page: 1,
+      page_size: result.length,
+      total: result.length,
+    } satisfies PaginatedResponse<ApiCategory>;
+  }
+
+  // Si regresa paginado: { data, page, page_size, total }
+  return result;
+};
 
 export const getCategory = (id: string, options?: RequestOptions) =>
   fetchJson<ApiCategory>(`${API_BASE_URL}/categories/${id}`, options);
 
 export const createCategory = (
-  payload: Omit<ApiCategory, "id" | "status">,
+  payload: Omit<ApiCategory, "id">,
   options?: RequestOptions
 ) =>
   fetchJson<ApiCategory>(`${API_BASE_URL}/categories`, {
@@ -169,14 +184,25 @@ export const deleteCategory = (id: string, options?: RequestOptions) =>
     ...options,
   });
 
-export const listCollections = (
+export const listCollections = async (
   params?: QueryParams,
   options?: RequestOptions
-) =>
-  fetchJson<PaginatedResponse<ApiCollection>>(
-    `${API_BASE_URL}/collections${buildQuery(params)}`,
-    options
-  );
+) => {
+  const result = await fetchJson<
+    ApiCollection[] | PaginatedResponse<ApiCollection>
+  >(`${API_BASE_URL}/collections${buildQuery(params)}`, options);
+
+  if (Array.isArray(result)) {
+    return {
+      data: result,
+      page: 1,
+      page_size: result.length,
+      total: result.length,
+    } satisfies PaginatedResponse<ApiCollection>;
+  }
+
+  return result;
+};
 
 export const getCollection = (id: string, options?: RequestOptions) =>
   fetchJson<ApiCollection>(`${API_BASE_URL}/collections/${id}`, options);
