@@ -41,7 +41,7 @@ export type ApiCollection = {
 };
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? "/api/v1";
-
+console.log("API_BASE_URL:", API_BASE_URL);
 type RequestOptions = RequestInit & { token?: string };
 
 type QueryParams = Record<string, string | number | boolean | undefined | null>;
@@ -94,10 +94,7 @@ async function fetchJson<T>(path: string, options?: RequestOptions) {
   return (await response.json()) as T;
 }
 
-export const listProducts = (
-  params?: QueryParams,
-  options?: RequestOptions
-) =>
+export const listProducts = (params?: QueryParams, options?: RequestOptions) =>
   fetchJson<PaginatedResponse<ApiProduct>>(
     `${API_BASE_URL}/products${buildQuery(params)}`,
     options

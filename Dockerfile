@@ -17,6 +17,7 @@ FROM node:20-alpine AS runner
 WORKDIR /app
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
+ENV NEXT_PUBLIC_API_BASE_URL=https://api.djengua.com/api/v1
 
 # Copiamos lo mínimo necesario
 COPY --from=builder /app/package*.json ./
