@@ -21,6 +21,7 @@ export default function CategoryForm() {
   const router = useRouter();
   const [name, setName] = useState("");
   const [slug, setSlug] = useState("");
+  const [description, setDescription] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -46,17 +47,21 @@ export default function CategoryForm() {
 
     setIsSubmitting(true);
     try {
-      await createCategory({ name: name.trim(), slug: finalSlug });
+      await createCategory({
+        name: name.trim(),
+        slug: finalSlug,
+        description,
+        status: "active",
+      });
       setSuccess("Categoría creada correctamente.");
       setName("");
       setSlug("");
+      setDescription("");
       router.push("/admin/categories");
       router.refresh();
     } catch (err) {
       setError(
-        err instanceof Error
-          ? err.message
-          : "No se pudo crear la categoría."
+        err instanceof Error ? err.message : "No se pudo crear la categoría."
       );
     } finally {
       setIsSubmitting(false);
@@ -105,6 +110,27 @@ export default function CategoryForm() {
             ? `Sugerencia automática: ${helperSlug}`
             : "Usa minúsculas y guiones para separar palabras."}
         </p>
+      </div>
+      <div>
+        <label
+          htmlFor="category-description"
+          className="text-xs font-semibold uppercase tracking-[0.2em] text-[#A68C72]"
+        >
+          Descripción
+        </label>
+        <input
+          id="category-description"
+          name="description"
+          value={description}
+          onChange={(event) => setDescription(event.target.value)}
+          placeholder={helperSlug || "ej. Flores eternas rojas y rosas."}
+          className="mt-2 w-full rounded-2xl border border-[#EFE6DD] bg-white/90 px-4 py-3 text-sm text-[#2B2B2B] shadow-[0_10px_30px_rgba(43,43,43,0.08)] outline-none focus:border-[#2B2B2B]"
+        />
+        {/* <p className="mt-2 text-xs text-[#6B6B6B]">
+          {helperSlug
+            ? `Sugerencia automática: ${helperSlug}`
+            : "Usa minúsculas y guiones para separar palabras."}
+        </p> */}
       </div>
 
       {error ? (

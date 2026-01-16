@@ -14,7 +14,10 @@ export default async function CategoriesPage() {
   let errorMessage = "";
 
   try {
-    const response = await listCategories({ page_size: 50 });
+    const response = await listCategories(
+      { page_size: 50 },
+      { cache: "no-store" }
+    );
     categories = response.data;
   } catch (error) {
     errorMessage = error instanceof Error ? error.message : "Error inesperado.";
@@ -61,7 +64,7 @@ export default async function CategoriesPage() {
               Lista de categorías
             </h2>
             <span className="rounded-full border border-[#EFE6DD] bg-[#FBF7F2] px-3 py-1 text-xs font-semibold text-[#6B6B6B]">
-              {categories.length} registros
+              {categories.length ?? 0} registros
             </span>
           </div>
 

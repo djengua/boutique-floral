@@ -10,7 +10,6 @@ import Button from "@/components/ui/Button";
 import { listCollections } from "@/lib/api";
 import {
   collectionFallbackCards,
-  collectionShowcase,
   mapApiCollectionToCard,
   type CollectionCard,
 } from "@/lib/collections";
@@ -31,13 +30,16 @@ export default function Collections() {
           { page: 1, page_size: 6, status: "active" },
           { cache: "no-store" }
         );
+
         if (!active) return;
         const mapped = response.data.map((collection, index) =>
           mapApiCollectionToCard(collection, index)
         );
+
         setItems(mapped.length > 0 ? mapped : collectionFallbackCards);
         setStatus("ready");
       } catch (error) {
+        console.error("Error loading collections:", error);
         if (!active) return;
         setItems(collectionFallbackCards);
         setStatus("fallback");
