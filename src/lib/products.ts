@@ -1,11 +1,17 @@
 /* =========================
    lib/products.ts
 ========================= */
-import type { Product } from "@/store/shopStore";
+import type { ApiProduct } from "@/lib/api";
+import type { Product, VariantKey } from "@/store/shopStore";
 
-export const products: Product[] = [
+export type ProductShowcase = Product & {
+  sku?: string;
+};
+
+export const productShowcase: ProductShowcase[] = [
   {
     id: "set-essentials",
+    sku: "SET-ESS",
     name: "Set Essentials",
     basePrice: 690,
     description:
@@ -17,6 +23,7 @@ export const products: Product[] = [
   },
   {
     id: "linea-minimal",
+    sku: "MIN-001",
     name: "Línea Minimal",
     basePrice: 1190,
     description: "Diseño limpio con acabados neutros para marcas sobrias.",
@@ -27,6 +34,7 @@ export const products: Product[] = [
   },
   {
     id: "kit-lifestyle",
+    sku: "LIFE-SET",
     name: "Kit Lifestyle",
     basePrice: 840,
     description:
@@ -38,6 +46,7 @@ export const products: Product[] = [
   },
   {
     id: "coleccion-urbana",
+    sku: "URB-202",
     name: "Colección Urbana",
     basePrice: 980,
     description:
@@ -48,6 +57,35 @@ export const products: Product[] = [
     variants: ["M", "L", "Premium"],
   },
 ];
+
+const defaultVariants: VariantKey[] = ["S", "M", "L", "Premium"];
+
+const normalize = (value?: string) => value?.trim().toLowerCase();
+
+export const mapApiProductToCard = (
+  apiProduct: ApiProduct,
+  index: number
+): Product => {
+  const match = productShowcase.find(
+    (product) =>
+      normalize(product.sku) === normalize(apiProduct.sku) ||
+      normalize(product.name) === normalize(apiProduct.name)
+  );
+  const fallback = productShowcase[index % productShowcase.length];
+
+  return {
+    id: apiProduct.id,
+    name: apiProduct.name,
+    basePrice: apiProduct.price,
+    description:
+      match?.description ??
+      fallback?.description ??
+      "Disponible para envío rápido.",
+    image: match?.image ?? fallback?.image ?? "",
+    badge: match?.badge,
+    variants: match?.variants ?? defaultVariants,
+  };
+};
 
 export function priceFor(variant: string, basePrice: number) {
   // Ajuste simple; cámbialo a tu lógica real
