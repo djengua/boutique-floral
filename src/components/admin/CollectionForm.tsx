@@ -21,6 +21,7 @@ export default function CollectionForm() {
   const router = useRouter();
   const [name, setName] = useState("");
   const [slug, setSlug] = useState("");
+  const [description, setDescription] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -49,10 +50,13 @@ export default function CollectionForm() {
       await createCollection({
         name: name.trim(),
         slug: finalSlug,
+        description,
+        status: "active",
       });
       setSuccess("Colección creada correctamente.");
       setName("");
       setSlug("");
+      setDescription("");
       router.push("/admin/collections");
       router.refresh();
     } catch (err) {
@@ -86,6 +90,27 @@ export default function CollectionForm() {
         </p>
       </div>
 
+      <div>
+        <label
+          htmlFor="collection-description"
+          className="text-xs font-semibold uppercase tracking-[0.2em] text-[#A68C72]"
+        >
+          Descripción
+        </label>
+        <input
+          id="collection-description"
+          name="description"
+          value={description}
+          onChange={(event) => setDescription(event.target.value)}
+          placeholder={"ej. Colección para San Valentin"}
+          className="mt-2 w-full rounded-2xl border border-[#EFE6DD] bg-white/90 px-4 py-3 text-sm text-[#2B2B2B] shadow-[0_10px_30px_rgba(43,43,43,0.08)] outline-none focus:border-[#2B2B2B]"
+        />
+        {/* <p className="mt-2 text-xs text-[#6B6B6B]">
+          {helperSlug
+            ? `Sugerencia automática: ${helperSlug}`
+            : "Usa minúsculas y guiones para separar palabras."}
+        </p> */}
+      </div>
       <div>
         <label
           htmlFor="collection-slug"
