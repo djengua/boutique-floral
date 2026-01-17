@@ -229,7 +229,7 @@ export const getCollection = (id: string, options?: RequestOptions) =>
   fetchJson<ApiCollection>(`${API_BASE_URL}/collections/${id}`, options);
 
 export const createCollection = (
-  payload: Omit<ApiCollection, "id" | "status">,
+  payload: Omit<ApiCollection, "id">,
   options?: RequestOptions
 ) =>
   fetchJson<ApiCollection>(`${API_BASE_URL}/collections`, {
