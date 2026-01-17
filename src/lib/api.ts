@@ -17,13 +17,19 @@ export type PaginatedResponse<T> = {
 
 export type ApiProduct = {
   id: string;
-  sku?: string;
+  sku: string;
   name: string;
+  description?: string | null;
   price: number;
   currency: string;
   status: string;
-  category_id?: string;
-  collection_id?: string;
+  category_id: string;
+  collection_ids?: string[];
+  images?: string[];
+  stock?: number | null;
+  created_at?: string;
+  updated_at?: string;
+  deleted_at?: string | null;
 };
 
 export type ApiCategory = {
@@ -106,7 +112,7 @@ export const getProduct = (id: string, options?: RequestOptions) =>
   fetchJson<ApiProduct>(`${API_BASE_URL}/products/${id}`, options);
 
 export const createProduct = (
-  payload: Omit<ApiProduct, "id" | "status">,
+  payload: Omit<ApiProduct, "id" | "created_at" | "updated_at" | "deleted_at">,
   options?: RequestOptions
 ) =>
   fetchJson<ApiProduct>(`${API_BASE_URL}/products`, {
