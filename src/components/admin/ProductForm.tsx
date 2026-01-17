@@ -107,8 +107,8 @@ export default function ProductForm() {
       return;
     }
 
-    const parsedStock = stock ? Number(stock) : undefined;
-    if (stock && (Number.isNaN(parsedStock) || parsedStock < 0)) {
+    const parsedStock = stock ? Number(stock) : 0;
+    if (stock && (Number.isNaN(parsedStock) || parsedStock! < 0)) {
       setError("Ingresa un stock válido.");
       return;
     }
