@@ -44,7 +44,7 @@ export type ApiCollection = {
   id: string;
   name: string;
   slug: string;
-
+  description: string;
   status: string;
 };
 
@@ -102,11 +102,26 @@ async function fetchJson<T>(path: string, options?: RequestOptions) {
   return (await response.json()) as T;
 }
 
-export const listProducts = (params?: QueryParams, options?: RequestOptions) =>
-  fetchJson<PaginatedResponse<ApiProduct>>(
+export const listProducts = async (
+  params?: QueryParams,
+  options?: RequestOptions
+) => {
+  const result = await fetchJson<ApiProduct[] | PaginatedResponse<ApiProduct>>(
     `${API_BASE_URL}/products${buildQuery(params)}`,
     options
   );
+
+  if (Array.isArray(result)) {
+    return {
+      data: result,
+      page: 1,
+      page_size: result.length,
+      total: result.length,
+    } satisfies PaginatedResponse<ApiProduct>;
+  }
+
+  return result;
+};
 
 export const getProduct = (id: string, options?: RequestOptions) =>
   fetchJson<ApiProduct>(`${API_BASE_URL}/products/${id}`, options);

@@ -19,6 +19,7 @@ export default async function ProductsPage() {
       listProducts({ page_size: 50 }, { cache: "no-store" }),
       listCategories({ page_size: 100 }, { cache: "no-store" }),
     ]);
+
     products = productsResponse.data;
     categories = categoriesResponse.data;
   } catch (error) {
