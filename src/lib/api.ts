@@ -17,13 +17,19 @@ export type PaginatedResponse<T> = {
 
 export type ApiProduct = {
   id: string;
-  sku?: string;
+  sku: string;
   name: string;
+  description?: string | null;
   price: number;
   currency: string;
   status: string;
-  category_id?: string;
-  collection_id?: string;
+  category_id: string;
+  collection_ids?: string[];
+  images?: string[];
+  stock?: number | null;
+  created_at?: string;
+  updated_at?: string;
+  deleted_at?: string | null;
 };
 
 export type ApiCategory = {
@@ -38,7 +44,7 @@ export type ApiCollection = {
   id: string;
   name: string;
   slug: string;
-
+  description: string;
   status: string;
 };
 
@@ -96,17 +102,32 @@ async function fetchJson<T>(path: string, options?: RequestOptions) {
   return (await response.json()) as T;
 }
 
-export const listProducts = (params?: QueryParams, options?: RequestOptions) =>
-  fetchJson<PaginatedResponse<ApiProduct>>(
+export const listProducts = async (
+  params?: QueryParams,
+  options?: RequestOptions
+) => {
+  const result = await fetchJson<ApiProduct[] | PaginatedResponse<ApiProduct>>(
     `${API_BASE_URL}/products${buildQuery(params)}`,
     options
   );
+
+  if (Array.isArray(result)) {
+    return {
+      data: result,
+      page: 1,
+      page_size: result.length,
+      total: result.length,
+    } satisfies PaginatedResponse<ApiProduct>;
+  }
+
+  return result;
+};
 
 export const getProduct = (id: string, options?: RequestOptions) =>
   fetchJson<ApiProduct>(`${API_BASE_URL}/products/${id}`, options);
 
 export const createProduct = (
-  payload: Omit<ApiProduct, "id" | "status">,
+  payload: Omit<ApiProduct, "id" | "created_at" | "updated_at" | "deleted_at">,
   options?: RequestOptions
 ) =>
   fetchJson<ApiProduct>(`${API_BASE_URL}/products`, {
