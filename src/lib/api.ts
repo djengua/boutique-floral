@@ -17,19 +17,26 @@ export type PaginatedResponse<T> = {
 
 export type ApiProduct = {
   id: string;
-  sku?: string;
+  sku: string;
   name: string;
+  description?: string | null;
   price: number;
   currency: string;
   status: string;
-  category_id?: string;
-  collection_id?: string;
+  category_id: string;
+  collection_ids?: string[];
+  images?: string[];
+  stock?: number | null;
+  created_at?: string;
+  updated_at?: string;
+  deleted_at?: string | null;
 };
 
 export type ApiCategory = {
   id: string;
   name: string;
   slug: string;
+  description: string;
   status: string;
 };
 
@@ -37,11 +44,12 @@ export type ApiCollection = {
   id: string;
   name: string;
   slug: string;
+  description: string;
   status: string;
 };
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? "/api/v1";
-console.log("API_BASE_URL:", API_BASE_URL);
+
 type RequestOptions = RequestInit & { token?: string };
 
 type QueryParams = Record<string, string | number | boolean | undefined | null>;
@@ -94,17 +102,32 @@ async function fetchJson<T>(path: string, options?: RequestOptions) {
   return (await response.json()) as T;
 }
 
-export const listProducts = (params?: QueryParams, options?: RequestOptions) =>
-  fetchJson<PaginatedResponse<ApiProduct>>(
+export const listProducts = async (
+  params?: QueryParams,
+  options?: RequestOptions
+) => {
+  const result = await fetchJson<ApiProduct[] | PaginatedResponse<ApiProduct>>(
     `${API_BASE_URL}/products${buildQuery(params)}`,
     options
   );
+
+  if (Array.isArray(result)) {
+    return {
+      data: result,
+      page: 1,
+      page_size: result.length,
+      total: result.length,
+    } satisfies PaginatedResponse<ApiProduct>;
+  }
+
+  return result;
+};
 
 export const getProduct = (id: string, options?: RequestOptions) =>
   fetchJson<ApiProduct>(`${API_BASE_URL}/products/${id}`, options);
 
 export const createProduct = (
-  payload: Omit<ApiProduct, "id" | "status">,
+  payload: Omit<ApiProduct, "id" | "created_at" | "updated_at" | "deleted_at">,
   options?: RequestOptions
 ) =>
   fetchJson<ApiProduct>(`${API_BASE_URL}/products`, {
@@ -130,20 +153,33 @@ export const deleteProduct = (id: string, options?: RequestOptions) =>
     ...options,
   });
 
-export const listCategories = (
+export const listCategories = async (
   params?: QueryParams,
   options?: RequestOptions
-) =>
-  fetchJson<PaginatedResponse<ApiCategory>>(
-    `${API_BASE_URL}/categories${buildQuery(params)}`,
-    options
-  );
+) => {
+  const result = await fetchJson<
+    ApiCategory[] | PaginatedResponse<ApiCategory>
+  >(`${API_BASE_URL}/categories${buildQuery(params)}`, options);
+
+  // Si el API regresa arreglo plano: [...]
+  if (Array.isArray(result)) {
+    return {
+      data: result,
+      page: 1,
+      page_size: result.length,
+      total: result.length,
+    } satisfies PaginatedResponse<ApiCategory>;
+  }
+
+  // Si regresa paginado: { data, page, page_size, total }
+  return result;
+};
 
 export const getCategory = (id: string, options?: RequestOptions) =>
   fetchJson<ApiCategory>(`${API_BASE_URL}/categories/${id}`, options);
 
 export const createCategory = (
-  payload: Omit<ApiCategory, "id" | "status">,
+  payload: Omit<ApiCategory, "id">,
   options?: RequestOptions
 ) =>
   fetchJson<ApiCategory>(`${API_BASE_URL}/categories`, {
@@ -169,20 +205,31 @@ export const deleteCategory = (id: string, options?: RequestOptions) =>
     ...options,
   });
 
-export const listCollections = (
+export const listCollections = async (
   params?: QueryParams,
   options?: RequestOptions
-) =>
-  fetchJson<PaginatedResponse<ApiCollection>>(
-    `${API_BASE_URL}/collections${buildQuery(params)}`,
-    options
-  );
+) => {
+  const result = await fetchJson<
+    ApiCollection[] | PaginatedResponse<ApiCollection>
+  >(`${API_BASE_URL}/collections${buildQuery(params)}`, options);
+
+  if (Array.isArray(result)) {
+    return {
+      data: result,
+      page: 1,
+      page_size: result.length,
+      total: result.length,
+    } satisfies PaginatedResponse<ApiCollection>;
+  }
+
+  return result;
+};
 
 export const getCollection = (id: string, options?: RequestOptions) =>
   fetchJson<ApiCollection>(`${API_BASE_URL}/collections/${id}`, options);
 
 export const createCollection = (
-  payload: Omit<ApiCollection, "id" | "status">,
+  payload: Omit<ApiCollection, "id">,
   options?: RequestOptions
 ) =>
   fetchJson<ApiCollection>(`${API_BASE_URL}/collections`, {
